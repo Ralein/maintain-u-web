@@ -64,9 +64,9 @@ export default function ServicesPage() {
       {/* CTA Section */}
       <section className="py-24 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{ 
-            backgroundImage: 'radial-gradient(circle, #3d4f6d 2px, transparent 2px)', 
-            backgroundSize: '40px 40px' 
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(circle, #3d4f6d 2px, transparent 2px)',
+            backgroundSize: '40px 40px'
           }}></div>
         </div>
         <div className="container mx-auto px-6 text-center relative z-10">
