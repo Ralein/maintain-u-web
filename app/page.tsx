@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FaTools, FaRegLightbulb } from "react-icons/fa";
+import AnimatedButton from "@/components/ui/AnimatedButton";
 import WorldMapSection from "@/components/WorldMapSection";
 
 export default function Home() {
@@ -34,20 +35,15 @@ export default function Home() {
                 comprehensive range of maintenance services tailored for the industrial sector.
               </p>
               <div className="pt-4">
-                <a href="#contact" className="btn-primary text-lg">
-                  Get Started
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </a>
+                <AnimatedButton text="Get Started" href="#contact" />
               </div>
             </div>
             <div className="relative hidden lg:block">
-              <div className="w-full h-[500px] bg-gradient-to-br from-blue-100 via-purple-50 to-pink-50 rounded-2xl flex items-center justify-center overflow-hidden shadow-2xl">
-                <svg className="w-96 h-96 text-blue-400 opacity-30" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-                </svg>
-              </div>
+              <img
+                src="/hero.svg"
+                alt="Industrial maintenance services"
+                className="w-full h-auto max-h-[600px] object-contain scale-110"
+              />
             </div>
           </div>
         </div>
@@ -88,8 +84,19 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
-        <div className="container mx-auto px-6">
+      <section id="about" className="py-24 relative overflow-hidden">
+        {/* Background Image with reduced opacity */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/hifi.jpg')",
+            opacity: 0.55,
+          }}
+        />
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50/90 via-blue-50/90 to-purple-50/90" />
+
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <p className="section-title text-center">WHY CHOOSE US?</p>
             <h2 className="heading-medium mb-10">About us</h2>
