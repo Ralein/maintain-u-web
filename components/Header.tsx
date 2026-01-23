@@ -22,21 +22,21 @@ export default function Header() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-10">
-            <Link href="/" className="text-gray-700 hover:text-[#e85d75] transition-colors font-medium text-[15px]">
+            <a href="#hero" className="text-gray-700 hover:text-[#e85d75] transition-colors font-medium text-[15px]">
               Home
-            </Link>
-            <Link href="/about" className="text-gray-700 hover:text-[#e85d75] transition-colors font-medium text-[15px]">
+            </a>
+            <a href="#about" className="text-gray-700 hover:text-[#e85d75] transition-colors font-medium text-[15px]">
               About us
-            </Link>
-            <Link href="/services" className="text-gray-700 hover:text-[#e85d75] transition-colors font-medium text-[15px]">
+            </a>
+            <a href="#services" className="text-gray-700 hover:text-[#e85d75] transition-colors font-medium text-[15px]">
               Services
-            </Link>
-            <Link href="/contact" className="text-gray-700 hover:text-[#e85d75] transition-colors font-medium text-[15px]">
+            </a>
+            <a href="#contact" className="text-gray-700 hover:text-[#e85d75] transition-colors font-medium text-[15px]">
               Contact us
-            </Link>
-            <Link href="/works" className="text-gray-700 hover:text-[#e85d75] transition-colors font-medium text-[15px]">
+            </a>
+            <a href="#works" className="text-gray-700 hover:text-[#e85d75] transition-colors font-medium text-[15px]">
               Our works
-            </Link>
+            </a>
           </nav>
 
           <button
@@ -51,11 +51,11 @@ export default function Header() {
 
         {isMenuOpen && (
           <nav className="md:hidden mt-4 flex flex-col gap-4">
-            <Link href="/" className="text-gray-700 hover:text-[#e85d75]">Home</Link>
-            <Link href="/about" className="text-gray-700 hover:text-[#e85d75]">About us</Link>
-            <Link href="/services" className="text-gray-700 hover:text-[#e85d75]">Services</Link>
-            <Link href="/contact" className="text-gray-700 hover:text-[#e85d75]">Contact us</Link>
-            <Link href="/works" className="text-gray-700 hover:text-[#e85d75]">Our works</Link>
+            <a href="#hero" className="text-gray-700 hover:text-[#e85d75]" onClick={() => setIsMenuOpen(false)}>Home</a>
+            <a href="#about" className="text-gray-700 hover:text-[#e85d75]" onClick={() => setIsMenuOpen(false)}>About us</a>
+            <a href="#services" className="text-gray-700 hover:text-[#e85d75]" onClick={() => setIsMenuOpen(false)}>Services</a>
+            <a href="#contact" className="text-gray-700 hover:text-[#e85d75]" onClick={() => setIsMenuOpen(false)}>Contact us</a>
+            <a href="#works" className="text-gray-700 hover:text-[#e85d75]" onClick={() => setIsMenuOpen(false)}>Our works</a>
           </nav>
         )}
       </div>

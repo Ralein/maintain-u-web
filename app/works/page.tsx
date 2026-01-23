@@ -1,5 +1,5 @@
+
 import Link from "next/link";
-import WorldMapSection from "@/components/WorldMapSection";
 
 export default function WorksPage() {
   return (
@@ -47,8 +47,6 @@ export default function WorksPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <WorldMapSection />
     </main>
   );
 }
