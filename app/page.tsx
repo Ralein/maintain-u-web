@@ -32,16 +32,16 @@ export default function Home() {
       <section id="hero" className="bg-gradient-to-br from-[#f0f4f8] via-[#e8f5e9] to-[#f3e5f5] py-16 lg:py-24 min-h-[500px] lg:min-h-[600px] flex items-center">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <div className="space-y-6 text-center lg:text-left">
+            <div className="space-y-6 text-left">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#3d4f6d] leading-[1.2] md:leading-tight">
                 Hire experts &<br className="hidden md:block" />
                 Get your job done
               </h1>
-              <p className="text-gray-600 text-base lg:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
+              <p className="text-gray-600 text-base lg:text-lg leading-relaxed max-w-lg lg:mx-0">
                 Welcome to <span className="font-semibold text-[#3d4f6d]">MaintainU</span>. We are dedicated to providing a
                 comprehensive range of maintenance services tailored for the industrial sector.
               </p>
-              <div className="pt-4 flex justify-center lg:justify-start">
+              <div className="pt-4 flex justify-start">
                 <AnimatedButton text="Get Started" href="#contact" />
               </div>
             </div>
