@@ -20,12 +20,20 @@ export function WorldMap({
 }: MapProps) {
     const svgRef = useRef<SVGSVGElement>(null);
     const [mounted, setMounted] = useState(false);
+    const [animationKey, setAnimationKey] = useState(0);
     const map = new DottedMap({ height: 100, grid: "diagonal" });
 
     const { theme } = useTheme();
 
     useEffect(() => {
         setMounted(true);
+
+        // Reset animation every 10 seconds to replay
+        const interval = setInterval(() => {
+            setAnimationKey(prev => prev + 1);
+        }, 8000);
+
+        return () => clearInterval(interval);
     }, []);
 
     // Use consistent colors until mounted to prevent hydration mismatch
@@ -73,7 +81,7 @@ export function WorldMap({
                     const startPoint = projectPoint(dot.start.lat, dot.start.lng);
                     const endPoint = projectPoint(dot.end.lat, dot.end.lng);
                     return (
-                        <g key={`path-group-${i}`}>
+                        <g key={`path-group-${animationKey}-${i}`}>
                             <motion.path
                                 d={createCurvedPath(startPoint, endPoint)}
                                 fill="none"
@@ -90,7 +98,7 @@ export function WorldMap({
                                     delay: 0.5 * i,
                                     ease: "easeOut",
                                 }}
-                                key={`start-upper-${i}`}
+                                key={`path-${animationKey}-${i}`}
                             ></motion.path>
                         </g>
                     );
