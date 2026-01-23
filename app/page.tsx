@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FaTools, FaRegLightbulb } from "react-icons/fa";
 import AnimatedButton from "@/components/ui/AnimatedButton";
 import WorldMapSection from "@/components/WorldMapSection";
+import ClientLogos from "@/components/ClientLogos";
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -49,39 +50,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Clients Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <h2 className="text-center text-4xl font-bold text-[#3d4f6d] mb-16" style={{ fontFamily: 'cursive' }}>
-            Our Clients
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center justify-items-center">
-            {[
-              { name: 'HONDA', color: '#cc0000' },
-              { name: 'TEAL', color: '#2c5f2d' },
-              { name: 'Blubee', color: '#0066cc' },
-              { name: 'VE', color: '#1a1a1a' },
-              { name: 'DB Santasalo', color: '#d32f2f' },
-              { name: 'CUMI', color: '#1976d2' },
-              { name: 'PSP', color: '#0288d1' },
-              { name: 'MAN', color: '#e53935' },
-              { name: 'MAGTORQ', color: '#f57c00' },
-              { name: 'OSRT', color: '#0097a7' },
-              { name: 'VINIR', color: '#c62828' },
-              { name: 'BPS', color: '#1565c0' }
-            ].map((client, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300 cursor-pointer"
-              >
-                <div className="text-2xl font-bold" style={{ color: client.color }}>
-                  {client.name}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ClientLogos />
 
       {/* About Section */}
       <section id="about" className="py-24 relative overflow-hidden">

@@ -119,3 +119,27 @@ button:focus {
 .shadow-consistent-lg {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
+
+/* Infinite Scroll Animation */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 40s linear infinite;
+}
+
+.animate-scroll-reverse {
+  animation: scroll 40s linear infinite reverse;
+}
+
+/* Pause animation on hover */
+.animate-scroll:hover, 
+.animate-scroll-reverse:hover {
+  animation-play-state: paused;
+}
