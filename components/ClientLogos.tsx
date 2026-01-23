@@ -75,11 +75,11 @@ function MarqueeRow({ clients, direction, speed }: { clients: { name: string, co
             onMouseLeave={() => setIsPaused(false)}
         >
             <style>{marqueeStyles}</style>
-            <div className="absolute inset-y-0 left-0 w-20 lg:w-40 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-            <div className="absolute inset-y-0 right-0 w-20 lg:w-40 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-y-0 left-0 w-12 lg:w-40 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-12 lg:w-40 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
             <div
-                className={`flex gap-12 lg:gap-24 flex-shrink-0 items-center px-4 ${direction === 'left' ? 'animate-marquee-left' : 'animate-marquee-right'
+                className={`flex gap-8 lg:gap-24 flex-shrink-0 items-center px-4 ${direction === 'left' ? 'animate-marquee-left' : 'animate-marquee-right'
                     } ${isPaused ? 'paused' : ''}`}
                 style={{
                     willChange: "transform",

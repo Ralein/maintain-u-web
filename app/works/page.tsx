@@ -2,7 +2,7 @@
 
 export default function WorksPage() {
   return (
-    <main className="py-24 bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 min-h-screen">
+    <main className="py-16 lg:py-24 bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 min-h-screen">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <p className="section-title text-center">OUR PORTFOLIO</p>

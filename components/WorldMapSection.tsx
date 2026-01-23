@@ -47,7 +47,7 @@ export default function WorldMapSection() {
                     Get Our Service?
                 </h2>
                 <Link
-                    href="/contact"
+                    href="/#contact"
                     className="btn-primary text-lg px-8 py-4 inline-flex items-center gap-3 shadow-lg hover:shadow-xl transition-shadow duration-300"
                 >
                     Get Started

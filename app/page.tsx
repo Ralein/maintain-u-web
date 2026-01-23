@@ -29,19 +29,19 @@ export default function Home() {
         message="Thank you for your message! We will get back to you soon."
       />
       {/* Hero Section */}
-      <section id="hero" className="bg-gradient-to-br from-[#f0f4f8] via-[#e8f5e9] to-[#f3e5f5] py-24 min-h-[600px] flex items-center">
+      <section id="hero" className="bg-gradient-to-br from-[#f0f4f8] via-[#e8f5e9] to-[#f3e5f5] py-16 lg:py-24 min-h-[500px] lg:min-h-[600px] flex items-center">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-6">
-              <h1 className="text-5xl lg:text-6xl font-bold text-[#3d4f6d] leading-tight">
-                Hire experts &<br />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <div className="space-y-6 text-center lg:text-left">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#3d4f6d] leading-[1.2] md:leading-tight">
+                Hire experts &<br className="hidden md:block" />
                 Get your job done
               </h1>
-              <p className="text-gray-600 text-lg leading-relaxed">
+              <p className="text-gray-600 text-base lg:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
                 Welcome to <span className="font-semibold text-[#3d4f6d]">MaintainU</span>. We are dedicated to providing a
                 comprehensive range of maintenance services tailored for the industrial sector.
               </p>
-              <div className="pt-4">
+              <div className="pt-4 flex justify-center lg:justify-start">
                 <AnimatedButton text="Get Started" href="#contact" />
               </div>
             </div>
@@ -59,7 +59,7 @@ export default function Home() {
       <ClientLogos />
 
       {/* About Section */}
-      <section id="about" className="py-24 relative overflow-hidden">
+      <section id="about" className="py-16 lg:py-24 relative overflow-hidden">
         {/* Background Image with reduced opacity */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -94,7 +94,7 @@ export default function Home() {
       </section>
 
       {/* Services Section - Horizontal Layout */}
-      <section id="services" className="py-16 bg-white">
+      <section id="services" className="py-12 lg:py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <p className="section-title text-center">OUR SERVICES</p>
@@ -116,25 +116,25 @@ export default function Home() {
               </div>
 
               {/* Service Pills - Center (Staggered Layout) */}
-              <div className="flex-1 flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-12 py-6">
-                <div className="flex flex-col gap-5 items-center lg:items-end">
-                  <div className="bg-[#5fcc6f] text-white px-6 py-5 rounded-full text-center font-semibold text-base shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer min-w-[160px lg:mr-6">
+              <div className="flex-1 flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-12 py-6 w-full">
+                <div className="flex flex-col gap-4 lg:gap-5 items-center lg:items-end w-full lg:w-auto">
+                  <div className="bg-[#5fcc6f] text-white px-6 py-4 lg:py-5 rounded-full text-center font-semibold text-base shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer w-full max-w-[280px] lg:w-auto lg:min-w-[160px] lg:mr-6">
                     Overhaul and Repair
                   </div>
-                  <div className="bg-[#5fcc6f] text-white px-6 py-5 rounded-full text-center font-semibold text-base shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer min-w-[160px] lg:-mr-6">
+                  <div className="bg-[#5fcc6f] text-white px-6 py-4 lg:py-5 rounded-full text-center font-semibold text-base shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer w-full max-w-[280px] lg:w-auto lg:min-w-[160px] lg:-mr-6">
                     Parts Replacement
                   </div>
                 </div>
 
-                <div className="bg-[#5fcc6f] text-white px-6 py-5 rounded-full text-center font-semibold text-base shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer min-w-[180px] lg:mt-2">
+                <div className="bg-[#5fcc6f] text-white px-6 py-4 lg:py-5 rounded-full text-center font-semibold text-base shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer w-full max-w-[280px] lg:w-auto lg:min-w-[180px] lg:mt-2">
                   Preventive Maintenance
                 </div>
 
-                <div className="flex flex-col gap-5 items-center lg:items-start">
-                  <div className="bg-[#5fcc6f] text-white px-6 py-5 rounded-full text-center font-semibold text-base shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer min-w-[160px] lg:ml-6">
+                <div className="flex flex-col gap-4 lg:gap-5 items-center lg:items-start w-full lg:w-auto">
+                  <div className="bg-[#5fcc6f] text-white px-6 py-4 lg:py-5 rounded-full text-center font-semibold text-base shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer w-full max-w-[280px] lg:w-auto lg:min-w-[160px] lg:ml-6">
                     Machine Installations
                   </div>
-                  <div className="bg-[#5fcc6f] text-white px-6 py-5 rounded-full text-center font-semibold text-base shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer min-w-[160px] lg:-ml-6">
+                  <div className="bg-[#5fcc6f] text-white px-6 py-4 lg:py-5 rounded-full text-center font-semibold text-base shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer w-full max-w-[280px] lg:w-auto lg:min-w-[160px] lg:-ml-6">
                     Labour Contracting
                   </div>
                 </div>
@@ -156,7 +156,7 @@ export default function Home() {
 
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 bg-white">
+      <section id="contact" className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <p className="section-title text-center">GET IN TOUCH</p>
@@ -164,8 +164,8 @@ export default function Home() {
           </div>
 
           <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-              <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl shadow-xl p-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+              <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl shadow-xl p-5 md:p-6 lg:p-10">
                 <h3 className="text-2xl font-bold text-[#3d4f6d] mb-8">Send us a message</h3>
                 <form onSubmit={async (e) => {
                   e.preventDefault();
