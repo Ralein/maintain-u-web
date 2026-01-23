@@ -7,7 +7,7 @@ export default function WorldMapSection() {
         <section className="py-10 md:py-28 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 relative overflow-hidden min-h-[350px] md:min-h-[550px]">
             {/* Background Map - Full section coverage */}
             <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-                <div className="w-[350%] md:w-[130%] lg:w-[110%] max-w-[none] md:max-w-[1600px] opacity-50">
+                <div className="max-w-[350%] md:max-w-[130%] lg:max-w-[110%] w-[350%] md:w-[130%] lg:w-[110%] md:max-w-[1600px] opacity-50">
                     <WorldMap
                         lineColor="#e57373"
                         dots={[
