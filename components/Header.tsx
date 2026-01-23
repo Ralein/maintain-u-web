@@ -1,10 +1,60 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState("");
+
+  // Handle scroll spy for home page sections
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActiveSection("");
+      return;
+    }
+
+    const handleScroll = () => {
+      const sections = ["hero", "about", "services", "contact"];
+      const scrollPosition = window.scrollY + 100; // Offset for sticky header
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check initial position
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [pathname]);
+
+  const isActive = (path: string, section?: string) => {
+    if (pathname === "/works" && path === "/works") return true;
+    if (pathname === "/" && section && activeSection === section) return true;
+    if (pathname === "/" && path === "/" && !section && activeSection === "hero") return true;
+    return false;
+  };
+
+  const getLinkHref = (section: string) => {
+    return pathname === "/" ? `#${section}` : `/#${section}`;
+  };
+
+  const linkClasses = (active: boolean) =>
+    `text-[15px] font-medium transition-all duration-300 relative ${active ? "text-[#e85d75]" : "text-gray-700 hover:text-[#e85d75]"
+    }`;
+
+  const Underline = () => (
+    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#e85d75] rounded-full" />
+  );
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
@@ -22,21 +72,26 @@ export default function Header() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-10">
-            <a href="#hero" className="text-gray-700 hover:text-[#e85d75] transition-colors font-medium text-[15px]">
+            <Link href={getLinkHref("hero")} className={linkClasses(isActive("/", "hero"))}>
               Home
-            </a>
-            <a href="#about" className="text-gray-700 hover:text-[#e85d75] transition-colors font-medium text-[15px]">
+              {isActive("/", "hero") && <Underline />}
+            </Link>
+            <Link href={getLinkHref("about")} className={linkClasses(isActive("/", "about"))}>
               About us
-            </a>
-            <a href="#services" className="text-gray-700 hover:text-[#e85d75] transition-colors font-medium text-[15px]">
+              {isActive("/", "about") && <Underline />}
+            </Link>
+            <Link href={getLinkHref("services")} className={linkClasses(isActive("/", "services"))}>
               Services
-            </a>
-            <a href="#contact" className="text-gray-700 hover:text-[#e85d75] transition-colors font-medium text-[15px]">
+              {isActive("/", "services") && <Underline />}
+            </Link>
+            <Link href={getLinkHref("contact")} className={linkClasses(isActive("/", "contact"))}>
               Contact us
-            </a>
-            <a href="#works" className="text-gray-700 hover:text-[#e85d75] transition-colors font-medium text-[15px]">
+              {isActive("/", "contact") && <Underline />}
+            </Link>
+            <Link href="/works" className={linkClasses(isActive("/works"))}>
               Our works
-            </a>
+              {isActive("/works") && <Underline />}
+            </Link>
           </nav>
 
           <button
@@ -51,11 +106,11 @@ export default function Header() {
 
         {isMenuOpen && (
           <nav className="md:hidden mt-4 flex flex-col gap-4">
-            <a href="#hero" className="text-gray-700 hover:text-[#e85d75]" onClick={() => setIsMenuOpen(false)}>Home</a>
-            <a href="#about" className="text-gray-700 hover:text-[#e85d75]" onClick={() => setIsMenuOpen(false)}>About us</a>
-            <a href="#services" className="text-gray-700 hover:text-[#e85d75]" onClick={() => setIsMenuOpen(false)}>Services</a>
-            <a href="#contact" className="text-gray-700 hover:text-[#e85d75]" onClick={() => setIsMenuOpen(false)}>Contact us</a>
-            <a href="#works" className="text-gray-700 hover:text-[#e85d75]" onClick={() => setIsMenuOpen(false)}>Our works</a>
+            <Link href={getLinkHref("hero")} className="text-gray-700 hover:text-[#e85d75]" onClick={() => setIsMenuOpen(false)}>Home</Link>
+            <Link href={getLinkHref("about")} className="text-gray-700 hover:text-[#e85d75]" onClick={() => setIsMenuOpen(false)}>About us</Link>
+            <Link href={getLinkHref("services")} className="text-gray-700 hover:text-[#e85d75]" onClick={() => setIsMenuOpen(false)}>Services</Link>
+            <Link href={getLinkHref("contact")} className="text-gray-700 hover:text-[#e85d75]" onClick={() => setIsMenuOpen(false)}>Contact us</Link>
+            <Link href="/works" className="text-gray-700 hover:text-[#e85d75]" onClick={() => setIsMenuOpen(false)}>Our works</Link>
           </nav>
         )}
       </div>
