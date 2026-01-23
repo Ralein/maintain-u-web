@@ -1,4 +1,5 @@
 import Link from "next/link";
+import WorldMapSection from "@/components/WorldMapSection";
 
 export default function Home() {
   return (
@@ -57,8 +58,8 @@ export default function Home() {
               { name: 'VINIR', color: '#c62828' },
               { name: 'BPS', color: '#1565c0' }
             ].map((client, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300 cursor-pointer"
               >
                 <div className="text-2xl font-bold" style={{ color: client.color }}>
@@ -154,26 +155,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{ 
-            backgroundImage: 'radial-gradient(circle, #3d4f6d 2px, transparent 2px)', 
-            backgroundSize: '40px 40px' 
-          }}></div>
-        </div>
-        <div className="container mx-auto px-6 text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#3d4f6d] mb-6 leading-tight">
-            Interested To<br />
-            Get Our Service?
-          </h2>
-          <Link href="/contact" className="btn-primary text-lg mt-4">
-            Get Started
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </Link>
-        </div>
-      </section>
+      <WorldMapSection />
     </main>
   );
 }
