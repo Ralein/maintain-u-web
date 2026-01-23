@@ -5,6 +5,9 @@ import { FaTools, FaRegLightbulb } from "react-icons/fa";
 import AnimatedButton from "@/components/ui/AnimatedButton";
 import WorldMapSection from "@/components/WorldMapSection";
 import ClientLogos from "@/components/ClientLogos";
+import SuccessModal from "@/components/ui/SuccessModal";
+
+import { sendContactEmail } from "@/lib/actions";
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -13,15 +16,18 @@ export default function Home() {
     phone: "",
     message: "",
   });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert("Thank you for your message! We will get back to you soon.");
-    setFormData({ name: "", email: "", phone: "", message: "" });
-  };
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [resultMessage, setResultMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   return (
     <main>
+      <SuccessModal
+        isOpen={showSuccessModal}
+        onClose={() => setShowSuccessModal(false)}
+        title="Message Sent!"
+        message="Thank you for your message! We will get back to you soon."
+      />
       {/* Hero Section */}
       <section id="hero" className="bg-gradient-to-br from-[#f0f4f8] via-[#e8f5e9] to-[#f3e5f5] py-24 min-h-[600px] flex items-center">
         <div className="container mx-auto px-6">
@@ -161,7 +167,31 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl shadow-xl p-10">
                 <h3 className="text-2xl font-bold text-[#3d4f6d] mb-8">Send us a message</h3>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={async (e) => {
+                  e.preventDefault();
+                  setIsSubmitting(true);
+                  if (resultMessage) setResultMessage(null); // Clear previous messages
+
+                  try {
+                    const result = await sendContactEmail(formData);
+                    if (result.success) {
+                      setShowSuccessModal(true); // Trigger Popup
+                      setFormData({ name: "", email: "", phone: "", message: "" });
+                    } else {
+                      setResultMessage({ type: "error", text: result.error || "Failed to send message." });
+                    }
+                  } catch (err) {
+                    setResultMessage({ type: "error", text: "An unexpected error occurred." });
+                  } finally {
+                    setIsSubmitting(false);
+                  }
+                }} className="space-y-6">
+                  {/* Only show error messages inline */}
+                  {resultMessage && resultMessage.type === 'error' && (
+                    <div className="p-4 rounded-lg mb-4 bg-red-50 text-red-700 border border-red-100">
+                      {resultMessage.text}
+                    </div>
+                  )}
                   <div>
                     <label className="block text-gray-700 font-medium mb-3 text-[15px]">Name</label>
                     <input
@@ -169,7 +199,8 @@ export default function Home() {
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e85d75] focus:border-transparent transition-all bg-white"
+                      disabled={isSubmitting}
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e85d75] focus:border-transparent transition-all bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
                       placeholder="Your name"
                     />
                   </div>
@@ -180,7 +211,8 @@ export default function Home() {
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e85d75] focus:border-transparent transition-all bg-white"
+                      disabled={isSubmitting}
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e85d75] focus:border-transparent transition-all bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -191,7 +223,8 @@ export default function Home() {
                       required
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e85d75] focus:border-transparent transition-all bg-white"
+                      disabled={isSubmitting}
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e85d75] focus:border-transparent transition-all bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
                       placeholder="+91 XXXXXXXXXX"
                     />
                   </div>
@@ -202,15 +235,32 @@ export default function Home() {
                       rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e85d75] focus:border-transparent transition-all resize-none bg-white"
+                      disabled={isSubmitting}
+                      className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e85d75] focus:border-transparent transition-all resize-none bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
                       placeholder="Tell us about your requirements..."
                     ></textarea>
                   </div>
-                  <button type="submit" className="btn-primary w-full justify-center text-lg py-4">
-                    Send Message
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="btn-primary w-full justify-center text-lg py-4 disabled:opacity-70 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? (
+                      <span className="flex items-center gap-2">
+                        <svg className="animate-spin h-5 w-5 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Sending...
+                      </span>
+                    ) : (
+                      <>
+                        Send Message
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </>
+                    )}
                   </button>
                 </form>
               </div>
